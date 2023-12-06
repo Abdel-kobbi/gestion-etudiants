@@ -22,7 +22,7 @@
             </div>
             <h1 class="mb-3">Ajouter ètudiant</h1>
             <form method="post" class="container border">
-                <div class="mb-3">    
+                <div class="mb-3">
                     <label for="nom" class="form-label">Nom</label>
                     <input type="text" class="form-control" name="nom" id="nom" placeholder="Votre nom" required />
                     <small id="errNom" class="form-text text-danger d-none">Entre Votre Nom</small>
@@ -69,6 +69,14 @@
                     </tbody>
                 </table>
             </div>
+            
+        </div>
+    </div>
+    <div class="alert alert-primary w-50 m-auto d-none" role="alert" id="alert">
+        <h4 class="alert-heading ">Vous ête sûr?</h4>
+        <div id="alert-btn" class="mt-5">
+            <button class="btn btn-danger px-4" id="oui" onclick="confirmDelete(true)">Oui</button>
+            <button class="btn btn-secondary" id="non" onclick="confirmDelete(true)">Annuler</button>
         </div>
     </div>
 </body>

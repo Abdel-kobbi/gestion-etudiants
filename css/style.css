@@ -1,11 +1,24 @@
-#btn{
+#btn {
     display: flex;
     justify-content: space-between;
     width: 40%;
     margin: 0% auto;
 }
 
-#change-color-theme{
+#change-color-theme {
     float: right;
     display: flex;
+}
+
+#alert-btn {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.alert{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

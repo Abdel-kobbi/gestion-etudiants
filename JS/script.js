@@ -14,11 +14,12 @@ let afichageTousEtudiant = async function () {
         <td>${element.prenom}</td>
         <td>${age}</td>
         <td class="${Etudiant.colorNote(element.note)}">${element.note}</td>
-        <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteEtudiant(${element.id})">Supprimer</button></td>
         </tr>
         `;
     });
     document.querySelector('.liste-etudiants').innerHTML = html;
+
 }
 
 afichageTousEtudiant();
@@ -77,8 +78,25 @@ document.querySelector('#add').addEventListener('click', addEtudiant);
 
 // chnage le theme
 
-
 document.getElementById('flexSwitchCheckChecked').addEventListener('click', () => {
     document.body.classList.toggle('bg-dark')
     document.body.classList.toggle('text-light')
 })
+
+
+//supprimer etudiant
+window.deleteEtudiant = (id) =>{
+    document.querySelector('.alert').classList.remove('d-none');
+    document.querySelector('.container').style.display = "none";
+    document.querySelector('#oui').addEventListener('click', ()=> {
+        Etudiant.deleteEtudiant(id);
+    });
+    document.querySelector('#non').addEventListener('click', ()=> {
+        document.querySelector('.alert').classList.add('d-none');
+        document.querySelector('.container').style.display = "block";
+    });
+    afichageTousEtudiant();
+}
+// confirmation de la supprission
+
+

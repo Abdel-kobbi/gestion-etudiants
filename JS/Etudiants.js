@@ -14,22 +14,35 @@ export default class Etudiant {
     }
 
     async addEtudiant() {
-        let data  = {
+        let data = {
             nom: this.nom,
             prenom: this.prenom,
             dateNaissance: this.dateNaissance,
             note: this.note
         }
-        const ADD = await fetch(API, { method: "POST", 
-                                        body: JSON.stringify(data),
-                                        headers: {
-                                            "Content-Type": "Application/json"
-                                        }})
-        
+        const ADD = await fetch(API, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "Application/json"
+            }
+        })
+
         console.log(ADD);
         return ADD;
     }
-    static colorNote(note){
+
+    static colorNote(note) {
         return note >= 10 ? "bg-success" : "bg-danger";
+    }
+
+    // deleted student
+    static async deleteEtudiant(id) {
+        let result = await fetch(API + '/' + id, {
+            method: "DELETE", headers: {
+                "Content-Type": "Application/json"
+            }
+        });
+        return result;
     }
 }

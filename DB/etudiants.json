@@ -27,13 +27,6 @@
       "prenom": "Khaoula",
       "dateNaissance": "2002/11/27",
       "note": 18.5
-    },
-    {
-      "nom": "ABDEL",
-      "prenom": "Khaliq",
-      "dateNaissance": "2023-12-04",
-      "note": "9",
-      "id": 5
     }
   ]
 }
