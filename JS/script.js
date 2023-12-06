@@ -1,10 +1,45 @@
 import Etudiant from "./Etudiants.js";
 
+// filter sitting
+let filter = {
+    "by": "id",
+    "desc": false
+}
+
+let spans = document.querySelectorAll('.filter');
+
+spans.forEach((el) => {
+    el.addEventListener('click', function () {
+        spans.forEach((el)=>{
+            el.children[0].innerHTML = '';
+        })
+        if (filter.by === el.dataset.column){
+            filter.desc = !filter.desc;
+        }else{
+            filter.by = el.dataset.column
+            filter.desc = false;
+        }
+        this.children[0].innerHTML = !filter.desc ? ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down text-primary ml-2" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+      </svg>` : ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up text-primary ml-2" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+    </svg>`;
+    afichageTousEtudiant();
+    });
+})
+
 
 // function afficher les listes des etudiants
-let afichageTousEtudiant = async function () {
+async function afichageTousEtudiant() {
     let response = await Etudiant.getAllEtudiants().then(_ => _);
-    let html = ''
+    response.sort((a, b) => {
+        if (filter.desc) {
+            return b[filter.by].toString().localeCompare(a[filter.by].toString());
+        }
+        return a[filter.by].toString().localeCompare(b[filter.by].toString());
+    });
+
+    let html = '';
     response.forEach(element => {
         let age = new Date().getFullYear() - new Date(element.dateNaissance).getFullYear();
         html += `
@@ -85,13 +120,13 @@ document.getElementById('flexSwitchCheckChecked').addEventListener('click', () =
 
 
 //supprimer etudiant
-window.deleteEtudiant = (id) =>{
+window.deleteEtudiant = (id) => {
     document.querySelector('.alert').classList.remove('d-none');
     document.querySelector('.container').style.display = "none";
-    document.querySelector('#oui').addEventListener('click', ()=> {
+    document.querySelector('#oui').addEventListener('click', () => {
         Etudiant.deleteEtudiant(id);
     });
-    document.querySelector('#non').addEventListener('click', ()=> {
+    document.querySelector('#non').addEventListener('click', () => {
         document.querySelector('.alert').classList.add('d-none');
         document.querySelector('.container').style.display = "block";
     });
