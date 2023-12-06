@@ -4,3 +4,8 @@
     width: 40%;
     margin: 0% auto;
 }
+
+#change-color-theme{
+    float: right;
+    display: flex;
+}

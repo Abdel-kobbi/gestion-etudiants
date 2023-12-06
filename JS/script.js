@@ -13,8 +13,8 @@ let afichageTousEtudiant = async function () {
         <td>${element.nom}</td>
         <td>${element.prenom}</td>
         <td>${age}</td>
-        <td>${element.note}</td>
-        <td class="text text-center"><button class="btn btn-danger btn-sm">Supprimer</button></td>
+        <td class="${Etudiant.colorNote(element.note)}">${element.note}</td>
+        <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
         </tr>
         `;
     });
@@ -74,3 +74,11 @@ const addEtudiant = () => {
 }
 
 document.querySelector('#add').addEventListener('click', addEtudiant);
+
+// chnage le theme
+
+
+document.getElementById('flexSwitchCheckChecked').addEventListener('click', () => {
+    document.body.classList.toggle('bg-dark')
+    document.body.classList.toggle('text-light')
+})

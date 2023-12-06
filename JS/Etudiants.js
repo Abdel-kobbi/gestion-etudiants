@@ -29,4 +29,7 @@ export default class Etudiant {
         console.log(ADD);
         return ADD;
     }
+    static colorNote(note){
+        return note >= 10 ? "bg-success" : "bg-danger";
+    }
 }
