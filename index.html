@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des étudiants</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js" type="module"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="app">
+            <h1 class="mb-3">Ajouter ètudiant</h1>
+            <form method="post" class="container border">
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="nom" placeholder="Votre nom" required />
+                    <small id="errNom" class="form-text text-danger d-none">Entre Votre Nom</small>
+                </div>
+                <div class="mb-3">
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Votre prénom" />
+                    <small id="errPrenom" class="form-text text-danger d-none">Entre Votre Prénom</small>
+                </div>
+                <div class="mb-3">
+                    <label for="d-n" class="form-label">Date de naissance</label>
+                    <input type="date" class="form-control" name="d-n" id="d-n" placeholder="Date de naissance" />
+                    <small id="errD-n" class="form-text text-danger d-none">Entre Votre date de naissance</small>
+                </div>
+                <div class="mb-3">
+                    <label for="note" class="form-label">Note</label>
+                    <input type="number" min="0" max="20" step="0.1" class="form-control" name="note" id="note"
+                        placeholder="Votre note" />
+                    <small id="errNote" class="form-text text-danger d-none">Entre une note correcte</small>
+                </div>
+                <div class="mb-3" id="btn">
+                    <button class="btn btn-outline-primary " type="button" id="add">Ajouter</button>
+                    <button class="btn btn-outline-danger" type="reset">Annuler</button>
+                </div>
+
+
+
+
+            </form>
+            <h1>Liste des étudiants</h1>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary my-2" id="refresh">Actualiser</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Âge</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="liste-etudiants">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
