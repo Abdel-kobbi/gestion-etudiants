@@ -10,12 +10,12 @@ let spans = document.querySelectorAll('.filter');
 
 spans.forEach((el) => {
     el.addEventListener('click', function () {
-        spans.forEach((el)=>{
+        spans.forEach((el) => {
             el.children[0].innerHTML = '';
         })
-        if (filter.by === el.dataset.column){
+        if (filter.by === el.dataset.column) {
             filter.desc = !filter.desc;
-        }else{
+        } else {
             filter.by = el.dataset.column
             filter.desc = false;
         }
@@ -24,7 +24,7 @@ spans.forEach((el) => {
       </svg>` : ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up text-primary ml-2" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
     </svg>`;
-    afichageTousEtudiant();
+        afichageTousEtudiant();
     });
 })
 
@@ -113,9 +113,24 @@ document.querySelector('#add').addEventListener('click', addEtudiant);
 
 // chnage le theme
 
+if (localStorage.getItem('theme') !== null) {
+    let [bg] = JSON.parse(localStorage.getItem('theme'));
+    if (bg === "bg-dark") {
+        document.body.classList.add('bg-dark');
+        document.body.classList.add('text-light');
+        document.body.classList.remove('bg-body');
+        document.body.classList.remove('text-dark');
+        document.getElementById('flexSwitchCheckChecked').removeAttribute("checked")
+    } else {
+        document.getElementById('flexSwitchCheckChecked').setAttribute("checked", 'true')
+    }
+}
 document.getElementById('flexSwitchCheckChecked').addEventListener('click', () => {
-    document.body.classList.toggle('bg-dark')
-    document.body.classList.toggle('text-light')
+    document.body.classList.toggle('bg-dark');
+    document.body.classList.toggle('text-light');
+    document.body.classList.toggle('bg-body');
+    document.body.classList.toggle('text-dark');
+    localStorage.setItem('theme', JSON.stringify([...document.body.classList]))
 })
 
 
