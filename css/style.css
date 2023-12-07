@@ -25,6 +25,3 @@
 th{
     cursor: pointer;
 }
-th:last-child:not(th){
-    color:yellow!important;
-}
